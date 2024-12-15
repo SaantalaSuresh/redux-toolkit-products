@@ -5,6 +5,7 @@ import Card from 'react-bootstrap/Card';
 import { useDispatch,useSelector } from 'react-redux';
 import { addProduct,removeProduct } from '../store/cartSlice';
 import Spinner from 'react-bootstrap/Spinner';
+import { Link } from 'react-router-dom';
 
 
 const Product = () => {
@@ -33,7 +34,8 @@ const Product = () => {
       <h1 className='text-center'>Product Dashboard</h1>
       <div style={{display:'flex' ,flexDirection:'row',justifyContent:'space-around' ,flexWrap:'wrap'}}>
         {products.length===0 ? <Spinner animation="border" variant="primary mt-5" />:products.map(product=>(
-          <Card style={{ width: '18rem', marginTop:'17px', display:'flex',flexDirection:'column', justifyContent:'space-between', alignItems:'center', paddingTop:'10px'}} key={product.id}>
+          <Link to={`/products/${product.id}`} style={{textDecoration:'none'}}>
+            <Card style={{ width: '18rem', marginTop:'17px', display:'flex',flexDirection:'column', justifyContent:'space-between', alignItems:'center', paddingTop:'10px'}} key={product.id}>
           <Card.Img variant="top" style={{width:'200px', height:'150px',marginTop:'20px', textAlign:'center', margin:'auto'}} src={product.image} />
           <Card.Body>
             <Card.Title>{product.title}</Card.Title>
@@ -49,6 +51,7 @@ const Product = () => {
            <p>$ {product.price}</p>
            </div>
         </Card>
+          </Link>
         ))}
       </div>
 

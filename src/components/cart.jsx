@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { useDispatch } from 'react-redux';
 import { removeProduct } from '../store/cartSlice';
+import { Link } from 'react-router-dom';
 
 const Cart = () => {
     const products = useSelector(state => state.cart)
@@ -25,6 +26,8 @@ const Cart = () => {
                     <h2 className='text-center mt-5'>Your cart is empty</h2>
                 </div> : <div style={{display:'flex' ,flexDirection:'row',justifyContent:'space-around' ,flexWrap:'wrap'}}>
                     {products.map((product, index) => (
+   <Link to={`/products/${product.id}`} style={{textDecoration:'none'}}>
+  
   <Card
     key={product.id ? product.id : `product-${index}`}
     style={{ width: '18rem', marginTop: '17px', textAlign:'center', margin:'auto'}}
@@ -54,6 +57,7 @@ const Cart = () => {
       <p>$ {product.price}</p>
     </div>
   </Card>
+  </Link>
 ))}
 
         
